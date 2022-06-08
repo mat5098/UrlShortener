@@ -19,11 +19,9 @@ class ShortenedUrlsController < ApplicationController
             if @url.save
                 redirect_to shortened_path(@url.short_url)
             else
-                flash[:error] = "check the error below:"
                 render 'index'
             end
         else
-            flash[:notice] = "A short link for this URL is already in our database"
             redirect_to shortened_path(@url.find_duplicate.short_url)
         end
     end
